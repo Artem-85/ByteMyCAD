@@ -7,6 +7,8 @@
 
 #include <QMainWindow>
 
+class BMC_MDI;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -27,9 +29,11 @@ public:
      * @brief Generate GUI objects and populate them in the main window
      *
      */
-    void Populate();
+    void init();
 
 private:
     Ui::MainWindow *ui;
+
+    BMC_MDI *mdiArea;
 };
 #endif // MAINWINDOW_H

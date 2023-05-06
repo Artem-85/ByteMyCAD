@@ -7,7 +7,11 @@ class BMC_MDI : public QMdiArea
 {
     Q_OBJECT
 public:
-    BMC_MDI();
+    /**
+     * @brief Main constructor
+     * @param parent
+     */
+    BMC_MDI(QWidget *parent);
 };
 
 #endif // BMC_MDI_H

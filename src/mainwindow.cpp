@@ -7,17 +7,18 @@ BMC_MainWindow::BMC_MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->Populate();
+    this->init();
 }
 
 BMC_MainWindow::~BMC_MainWindow()
 {
+    delete mdiArea;
     delete ui;
 }
 
-void BMC_MainWindow::Populate()
+void BMC_MainWindow::init()
 {
-    BMC_MDI *mdiArea = new BMC_MDI;
+    mdiArea = new BMC_MDI(this);
     this->setCentralWidget(mdiArea);
 }
 

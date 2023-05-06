@@ -14,11 +14,6 @@
 #include <QTranslator>
 #include <QSettings>
 
-void Init()
-{
-//    QSettings appSettings("MySoft", "Star Runner");
-}
-
 /**
  * @brief Entry point to the application
  * @param argc

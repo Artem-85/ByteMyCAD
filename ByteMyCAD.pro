@@ -18,7 +18,8 @@ HEADERS += \
     src/application.h \
     src/bytemycad.h \
     src/mainwindow.h \
-    src/mdi.h
+    src/mdi.h \
+    src/version.h
 
 FORMS += \
     mainwindow.ui
