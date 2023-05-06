@@ -22,5 +22,7 @@ void BMC_Application::init()
     this->setOrganizationDomain(BMC_WEB_ADDRESS);
 
     /* Create app settings. This will automatically include the aforementioned app data */
-    QSettings *settings = new QSettings;
+    settings = new QSettings;
 }
+
+//connect(this, &QTC_Application::aboutToQuit, this, &QTC_Application::cleanUp);

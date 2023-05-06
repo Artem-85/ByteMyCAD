@@ -9,6 +9,7 @@
 #define BITEMYCAD_H
 
 #include "version.h"
+#include "application.h"
 
 /**
  * @brief Stringify argument
@@ -22,5 +23,15 @@
 #define BMC_WEB_ADDRESS "bytemycad.io"
 #define BMC_VERSION_FULL BMC_STR(BMC_MAJOR_VERSION) "." BMC_STR(BMC_MINOR_VERSION) "." BMC_STR(BMC_REVISION) "-" BMC_BUILD " " BMC_VERSION_TIME
 
+/**
+ * @def bmcApp
+ * @brief Get the instance of the application.
+ * @return Pointer to the object of @ref BMC_Application
+ *
+ */
+#if defined(bmcApp)
+#undef bmcApp
+#endif
+#define bmcApp (static_cast<BMC_Application *>(QCoreApplication::instance()))
 
 #endif // BITEMYCAD_H

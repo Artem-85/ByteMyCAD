@@ -15,9 +15,19 @@ public:
     ~BMC_Application();
 
     /**
-     * @brief Initialize application
+     * @brief Initialize application.
      */
     void init();
+
+    /**
+     * @brief Get pointer to the application settings.
+     * @return @ref settings.
+     */
+    QSettings *getSettings() { return settings; }
+
+    void writeSettings() {};
+
+    void readSettings() {};
 private:
 
     /**

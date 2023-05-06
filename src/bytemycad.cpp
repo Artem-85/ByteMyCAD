@@ -22,7 +22,9 @@
  */
 int main(int argc, char *argv[])
 {
+    /* Create and initiallize the application */
     BMC_Application app(argc, argv);
+    app.init();
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();

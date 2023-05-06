@@ -1,9 +1,7 @@
 /**
  * @file version.h
  * @brief Contains version of the application
- *
  * @details The content of this file is generated automatically, do not change it.
- *
  * @author Artem Plyusnin
  *
  *
