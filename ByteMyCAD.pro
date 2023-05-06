@@ -10,11 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     src/bytemycad.cpp \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/mdi.cpp
 
 HEADERS += \
     src/bytemycad.h \
-    src/mainwindow.h
+    src/mainwindow.h \
+    src/mdi.h
 
 FORMS += \
     mainwindow.ui
