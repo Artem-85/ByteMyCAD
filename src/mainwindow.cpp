@@ -17,8 +17,6 @@ BMC_MainWindow::~BMC_MainWindow()
 
 void BMC_MainWindow::Populate()
 {
-//    // Horizontal layout with 3 buttons
-//    QHBoxLayout *hLayout = new QHBoxLayout;
     BMC_MDI *mdiArea = new BMC_MDI;
     this->setCentralWidget(mdiArea);
 }

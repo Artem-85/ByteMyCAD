@@ -7,20 +7,32 @@
  *
  */
 #include "bytemycad.h"
+#include "application.h"
 #include "mainwindow.h"
 
-#include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QSettings>
 
+void Init()
+{
+//    QSettings appSettings("MySoft", "Star Runner");
+}
+
+/**
+ * @brief Entry point to the application
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    BMC_Application app(argc, argv);
 
     QTranslator translator;
     const QStringList uiLanguages = QLocale::system().uiLanguages();
     for (const QString &locale : uiLanguages) {
-        const QString baseName = "ByteMyCAD_" + QLocale(locale).name();
+        const QString baseName = BMC_APP_NAME "_" + QLocale(locale).name();
         if (translator.load(":/i18n/" + baseName)) {
             app.installTranslator(&translator);
             break;
