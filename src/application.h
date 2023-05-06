@@ -30,6 +30,10 @@ public:
     void readSettings() {};
 private:
 
+    void createActions();
+
+    void cleanUp();
+
     /**
      * @brief Stores application settings
      */
