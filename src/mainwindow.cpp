@@ -23,6 +23,7 @@ BMC_MainWindow::BMC_MainWindow(QWidget *parent)
 BMC_MainWindow::~BMC_MainWindow()
 {
     delete mdiArea;
+    delete mainMenuBar;
     delete ui;
 }
 

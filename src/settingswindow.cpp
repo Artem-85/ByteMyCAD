@@ -1,23 +1,70 @@
 #include "settingswindow.h"
 
+#include <QSplitter>
+#include <QTreeWidget>
+#include <QDialogButtonBox>
+#include <QVBoxLayout>
+#include <QAbstractButton>
+#include <QLabel>
+
 BMC_SettingsWindow::BMC_SettingsWindow(QWidget *parent)
     : QDialog(parent)
 {
     init();
 }
 
+void BMC_SettingsWindow::createActions()
+{
+//    connect(settingsTree, &QTreeWidget::itemClicked, this, &BMC_SettingsWindow::onTreeItemClick);
+    /* This works for all three buttons */
+    connect(buttonBox, &QDialogButtonBox::clicked, this, &BMC_SettingsWindow::onButtonPress);
+}
+
 void BMC_SettingsWindow::init()
 {
 
     /* Set parameters of the window */
-    setModal(true);
-    setAttribute(Qt::WA_DeleteOnClose);
+    this->setModal(true);
+    this->setAttribute(Qt::WA_DeleteOnClose);
 
-    setFixedSize(800,600);
-    setWindowTitle(tr("Application Preferences"));
+    this->setFixedSize(800, 600);
+    this->setWindowTitle(tr("Application Preferences"));
+
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+
+    buttonBox = new QDialogButtonBox((QDialogButtonBox::Ok | QDialogButtonBox::Apply | QDialogButtonBox::Cancel), this);
+
+    splitView = new QSplitter(this);
+    settingsTree = new QTreeWidget(splitView);
+    settingWidget = new QWidget(splitView);
+
+    splitView->addWidget(settingsTree);
+    splitView->addWidget(settingWidget);
+    splitView->setCollapsible(0, false);
+    splitView->setCollapsible(1, false);
+
+    settingsTree->setMinimumWidth(150);
+    settingsTree->setMaximumWidth(400);
+    settingsTree->sizeHint();
+
+    QLabel *introLabel = new QLabel(settingWidget);
+    introLabel->setText(tr("Select setting to edit"));
+    introLabel->setAlignment(Qt::AlignCenter);
+    QVBoxLayout *settingWidgetLayout = new QVBoxLayout(settingWidget);
+    settingWidgetLayout->addWidget(introLabel);
+    settingWidget->setLayout(settingWidgetLayout);
+
+    /* Populate main layout */
+    mainLayout->addWidget(splitView);
+    mainLayout->addWidget(buttonBox);
+
+    /* Set layout to the window */
+    this->setLayout(mainLayout);
+
+    this->createActions();
 
 //    // setup the properties tree
-//    splitView()->addWidget(propsTree());
+
 //    splitView()->setCollapsible(0,false);
 //    splitView()->setCollapsible(1,false);
 //    //    splitView()->setSizePolicy(QSizePolicy::Minimum);
@@ -33,14 +80,28 @@ void BMC_SettingsWindow::init()
 //    settings.beginGroup("PropertiesTree");
 //    settings.endGroup();
 
-//    // add elements to the main layout
-//    mainLayout()->addWidget(splitView());
-//    mainLayout()->addWidget(buttonBox());
-//    setLayout(mainLayout());
+}
 
-//    connect(propsTree(), &QTreeWidget::itemClicked, this, &QTC_PreferenceWindow::onTreeItemClick);
-//    connect(buttonBox(), &QDialogButtonBox::accepted, this, &QTC_PreferenceWindow::accept);
-//    connect(buttonBox(), &QDialogButtonBox::clicked, this, &QTC_PreferenceWindow::apply);
-//    connect(buttonBox(), &QDialogButtonBox::rejected, this, &QTC_PreferenceWindow::reject);
+void BMC_SettingsWindow::applyChanges()
+{
+#if defined(DBG)
+    qDebug() << "Process changes\n";
+#endif
+}
 
+void BMC_SettingsWindow::onButtonPress(QAbstractButton *button)
+{
+    switch (buttonBox->buttonRole(button))
+    {
+    case QDialogButtonBox::ApplyRole:
+        applyChanges();
+        break;
+    case QDialogButtonBox::AcceptRole:
+        applyChanges();
+        this->close();
+        break;
+    default:
+        this->close();
+        break;
+    }
 }
