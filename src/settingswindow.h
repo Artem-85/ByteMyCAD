@@ -14,10 +14,13 @@ class BMC_SettingsWindow : public QDialog
 public:
     BMC_SettingsWindow(QWidget *parent);
 
-private:
     void init();
 
+private:
+
     void createActions();
+
+    void populateTree();
 
     void applyChanges();
 

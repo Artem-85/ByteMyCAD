@@ -8,9 +8,8 @@
 #include <QLabel>
 
 BMC_SettingsWindow::BMC_SettingsWindow(QWidget *parent)
-    : QDialog(parent)
+    : QDialog(parent, (Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint | Qt::WindowContextHelpButtonHint))
 {
-    init();
 }
 
 void BMC_SettingsWindow::createActions()
@@ -28,7 +27,7 @@ void BMC_SettingsWindow::init()
     this->setAttribute(Qt::WA_DeleteOnClose);
 
     this->setFixedSize(800, 600);
-    this->setWindowTitle(tr("Application Preferences"));
+    this->setWindowTitle(tr("Application settings"));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
 
@@ -63,6 +62,8 @@ void BMC_SettingsWindow::init()
 
     this->createActions();
 
+    this->populateTree();
+
 //    // setup the properties tree
 
 //    splitView()->setCollapsible(0,false);
@@ -72,13 +73,37 @@ void BMC_SettingsWindow::init()
 //    propsTree()->setColumnCount(1);
 //    propsTree()->setHeaderHidden(true);
 //    populatePropsTree();
-//    propsTree()->setMinimumWidth(150);
-//    propsTree()->setColumnWidth(0,150);
-//    //    propsTree()->sizeHint();
+
 
 //    QSettings settings;
 //    settings.beginGroup("PropertiesTree");
 //    settings.endGroup();
+
+}
+
+void BMC_SettingsWindow::populateTree()
+{
+    QTreeWidgetItem *settingsGeneral = new QTreeWidgetItem(settingsTree);
+    settingsGeneral->setText(0, tr("General"));
+//    propsGeneral->setData(0,Qt::UserRole,propsView()->addWidget(getStartView()));
+
+    QTreeWidgetItem *settingsGeneralLocalization = new QTreeWidgetItem(settingsGeneral);
+    settingsGeneralLocalization->setText(0, tr("Localization"));
+//    propsGeneralInterface->setData(0,Qt::UserRole,propsView()->addWidget(getGeneralInterfaceView()));
+
+    QTreeWidgetItem *settingsGeneralSystem = new QTreeWidgetItem(settingsGeneral);
+    settingsGeneralSystem->setText(0, tr("System"));
+
+//    QWidget *thirdPageWidget = new QWidget(splitView());
+//    QLabel *viewLabel3 = new QLabel(tr("Page 3"),thirdPageWidget);
+//    QGridLayout *viewLayout3 = new QGridLayout(thirdPageWidget);
+//    viewLayout3->addWidget(viewLabel3);
+//    thirdPageWidget->setLayout(viewLayout3);
+
+//    propsGeneralSystem->setText(0,tr("System"));
+//    propsGeneralSystem->setData(0,Qt::UserRole,propsView()->addWidget(thirdPageWidget));
+
+    settingsTree->addTopLevelItem(settingsGeneral);
 
 }
 

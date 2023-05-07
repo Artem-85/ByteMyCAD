@@ -144,6 +144,6 @@ void BMC_MainWindow::closeEvent(QCloseEvent* event)
 void BMC_MainWindow::openSettingsWindow()
 {
     BMC_SettingsWindow *settingsWindow = new BMC_SettingsWindow(this);
-//    settingsWindow->initPrefWindow();
+    settingsWindow->init();
     settingsWindow->exec();
 }
