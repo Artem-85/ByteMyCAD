@@ -4,7 +4,17 @@
 <context>
     <name>BMC_MainWindow</name>
     <message>
-        <location filename="../src/mainwindow.cpp" line="69"/>
+        <location filename="../src/mainwindow.cpp" line="71"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="74"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/mainwindow.cpp" line="97"/>
         <source>Do you really want to quit?</source>
         <translation>Vill du verkligen sluta?</translation>
     </message>

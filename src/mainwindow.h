@@ -10,6 +10,7 @@
 #include <QMainWindow>
 
 class BMC_MDI;
+class BMC_MainMenuBar;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,6 +44,10 @@ private:
      */
     void createActions();
 
+    void createMainMenu();
+
+    void openSettingsWindow();
+
     /****** Events ******/
     /**
      * @brief The code called on closing the main window.
@@ -51,11 +56,20 @@ private:
     void closeEvent(QCloseEvent *event);
     /****** /Events ******/
 
+    /****** GUI elements ******/
     /**
      * @brief Automatically generated UI object
      */
     Ui::MainWindow *ui;
 
     BMC_MDI *mdiArea;
+
+    BMC_MainMenuBar *mainMenuBar;
+    /****** /GUI elements ******/
+
+    /****** Actions ******/
+    QAction *actionQuit;
+    QAction *actionSettings;
+    /****** /Actions ******/
 };
 #endif // MAINWINDOW_H

@@ -11,21 +11,26 @@ CONFIG += c++17
 SOURCES += \
     src/application.cpp \
     src/bytemycad.cpp \
+    src/mainmenubar.cpp \
     src/mainwindow.cpp \
-    src/mdi.cpp
+    src/mdi.cpp \
+    src/menu.cpp \
+    src/settingswindow.cpp
 
 HEADERS += \
     src/application.h \
     src/bytemycad.h \
+    src/mainmenubar.h \
     src/mainwindow.h \
     src/mdi.h \
+    src/menu.h \
+    src/settingswindow.h \
     src/version.h
 
 FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    translations/ByteMyCAD_en_US.ts \
     translations/ByteMyCAD_sv_FI.ts
 CONFIG += lrelease
 CONFIG += embed_translations
@@ -41,5 +46,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     build/debug/.qm/ByteMyCAD_sv_FI.qm \
-    translations/ByteMyCAD_en_US.ts \
     translations/ByteMyCAD_sv_FI.ts
