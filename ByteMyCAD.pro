@@ -11,20 +11,20 @@ CONFIG += c++17
 SOURCES += \
     src/application.cpp \
     src/bytemycad.cpp \
-    src/mainmenubar.cpp \
-    src/mainwindow.cpp \
-    src/mdi.cpp \
-    src/menu.cpp \
-    src/settingswindow.cpp
+    src/gui/mainwindow/mainmenubar.cpp \
+    src/gui/mainwindow/mainwindow.cpp \
+    src/gui/mainwindow/mdi.cpp \
+    src/gui/mainwindow/menu.cpp \
+    src/gui/settingswindow/settingswindow.cpp
 
 HEADERS += \
     src/application.h \
     src/bytemycad.h \
-    src/mainmenubar.h \
-    src/mainwindow.h \
-    src/mdi.h \
-    src/menu.h \
-    src/settingswindow.h \
+    src/gui/mainwindow/mainmenubar.h \
+    src/gui/mainwindow/mainwindow.h \
+    src/gui/mainwindow/mdi.h \
+    src/gui/mainwindow/menu.h \
+    src/gui/settingswindow/settingswindow.h \
     src/version.h
 
 FORMS += \

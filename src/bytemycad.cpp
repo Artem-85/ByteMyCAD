@@ -8,7 +8,7 @@
  */
 #include "bytemycad.h"
 #include "application.h"
-#include "mainwindow.h"
+#include "gui/mainwindow/mainwindow.h"
 
 #include <QLocale>
 #include <QTranslator>

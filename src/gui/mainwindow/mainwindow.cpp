@@ -1,9 +1,9 @@
-#include "bytemycad.h"
+#include "../../bytemycad.h"
 #include "mainwindow.h"
 #include "mainmenubar.h"
 #include "menu.h"
 #include "mdi.h"
-#include "settingswindow.h"
+#include "../settingswindow/settingswindow.h"
 #include "ui_mainwindow.h"
 
 
