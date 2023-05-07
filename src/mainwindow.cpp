@@ -26,12 +26,22 @@ void BMC_MainWindow::readSettings()
     QSettings * const settings = bmcApp->getSettings();
 
     /* Set window size and position */
+#if defined(DBG)
+    qDebug() << "SETTINGS/MainWindow";
+#endif
     settings->beginGroup("MainWindow");
     const auto geometry = settings->value("geometry", QByteArray()).toByteArray();
-    if (geometry.isEmpty())
+    if (geometry.isEmpty()) {
         setGeometry(200, 200, 400, 400);
-    else
+#if defined(DBG)
+        qDebug() << "\tno stored window geometry found";
+#endif
+    } else {
         restoreGeometry(geometry);
+#if defined(DBG)
+        qDebug() << "\twindow geometry restored";
+#endif
+    }
     settings->endGroup();
 }
 

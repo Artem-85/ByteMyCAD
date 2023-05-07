@@ -16,7 +16,8 @@
  */
 #define BMC_STR(_x) #_x
 
-#define BMC_APP_NAME "ByteMyCAD: absolutely incapable CAD which won't solve your problems"
+#define BMC_APP_NAME "ByteMyCAD"
+#define BMC_APP_DESCRIPTION ": absolutely incapable CAD which won't solve your problems"
 #define BMC_DISPLAY_APP_NAME "ByteMyCAD"
 #define BMC_ORGANIZATION_NAME "ByteMyCad Inc"
 #define BMC_CONTACT_EMAIL "bytemycad@proton.me"

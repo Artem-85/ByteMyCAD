@@ -25,9 +25,24 @@ public:
      */
     QSettings *getSettings() { return settings; }
 
-    void writeSettings() {};
+    /**
+     * @brief Detect the application locale
+     * @details Application locale is setup following these steps:
+     * 1. Read latesl locale from app settings;
+     * 2. Use system locale if no app settings found;
+     * 3. Use en_US if no translation matching the system locale is found.
+     */
+    void setAppLocale();
 
-    void readSettings() {};
+    /**
+     * @brief Get abbreviation for the app's locale.
+     * @return
+     */
+    QString &getAppLocaleName() { return localeName; };
+
+    void writeSettings();
+
+    void readSettings();
 private:
 
     void createActions();
@@ -38,6 +53,12 @@ private:
      * @brief Stores application settings
      */
     QSettings *settings;
+
+    QLocale *locale;
+
+    QTranslator *translator;
+
+    QString localeName;
 };
 
 #endif // BMC_APPLICATION_H

@@ -51,6 +51,9 @@ private:
     void closeEvent(QCloseEvent *event);
     /****** /Events ******/
 
+    /**
+     * @brief Automatically generated UI object
+     */
     Ui::MainWindow *ui;
 
     BMC_MDI *mdiArea;

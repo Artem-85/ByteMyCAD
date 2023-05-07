@@ -1,7 +1,10 @@
 #include "application.h"
 #include "bytemycad.h"
 
-#include <QDebug>
+#if defined(DBG)
+#   include <QDebug>
+#endif
+#include <QTranslator>
 
 BMC_Application::BMC_Application(int &argc, char **argv, int flags)
     : QApplication(argc, argv, flags)
@@ -11,6 +14,76 @@ BMC_Application::BMC_Application(int &argc, char **argv, int flags)
 
 BMC_Application::~BMC_Application()
 {
+}
+
+void BMC_Application::readSettings()
+{
+    /* Set localization data */
+#if defined(DBG)
+    qDebug() << "SETTINGS/Localization";
+#endif
+    settings->beginGroup("Localization");
+    if (!settings->value("locale").isValid()) {
+#if defined(DBG)
+        qDebug() << "\tno stored locale found";
+#endif
+        setAppLocale();
+    } else {
+        locale = new QLocale(settings->value("locale", QLocale()).toLocale());
+#if defined(DBG)
+        qDebug() << "\tlocale restored";
+#endif
+    }
+    settings->endGroup();
+}
+
+void BMC_Application::writeSettings()
+{
+    QSettings * const settings = bmcApp->getSettings();
+
+    /* Save window size and position */
+    settings->beginGroup("Localization");
+    settings->setValue("locale", *locale);
+    settings->endGroup();
+}
+
+void BMC_Application::setAppLocale()
+{
+    translator = new QTranslator;
+
+    /* TODO check settings and load locale from settings */
+
+    /* If no settings found: look for translation matching the system language */
+    const QStringList uiLanguages = QLocale::system().uiLanguages();
+#if defined(DBG)
+    qDebug() << "Available system UI languages:\n";
+#endif
+    for (const QString &systemLocaleName : uiLanguages) {
+#if defined(DBG)
+        qDebug() << systemLocaleName << Qt::endl;
+#endif
+        const QString baseName = BMC_APP_NAME "_" + QLocale(systemLocaleName).name();
+        if (translator->load(":/i18n/" + baseName)) {
+            /* Setup app locale */
+            locale = new QLocale(systemLocaleName);
+            /* Apply translation */
+            this->installTranslator(translator);
+#if defined(DBG)
+            qDebug() << "Applied translation: " << baseName << Qt::endl;
+#endif
+            break;
+        }
+    }
+
+//    /* If no translation matching system language has been found */
+//    if (translator->isEmpty()) {
+//        if (!translator->load(":/i18n/" BMC_APP_NAME "_en_US")) {
+//            ; // TODO exit from app with error
+//#if defined(DBG)
+//            qDebug() << "CRITICAL: No translation data has been found";
+//#endif
+//        }
+//    }
 }
 
 void BMC_Application::init()
@@ -28,7 +101,8 @@ void BMC_Application::init()
     /* Prepare signals and slots */
     createActions();
 
-    /* Create app settings. This will automatically include the aforementioned app data */
+    /* Create app settings. This will use aforementioned info
+     * to correctly name and place the settings in the OS registry or configuration files */
     settings = new QSettings;
     readSettings();
 }
@@ -40,6 +114,8 @@ void BMC_Application::cleanUp()
 #endif
     writeSettings();
     delete settings;
+    delete translator;
+    delete locale;
 }
 
 void BMC_Application::createActions()

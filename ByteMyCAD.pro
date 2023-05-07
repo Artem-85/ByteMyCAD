@@ -25,7 +25,8 @@ FORMS += \
     mainwindow.ui
 
 TRANSLATIONS += \
-    translations/ByteMyCAD_en_US.ts
+    translations/ByteMyCAD_en_US.ts \
+    translations/ByteMyCAD_sv_FI.ts
 CONFIG += lrelease
 CONFIG += embed_translations
 
@@ -39,4 +40,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    translations/ByteMyCAD_en_US.ts
+    build/debug/.qm/ByteMyCAD_sv_FI.qm \
+    translations/ByteMyCAD_en_US.ts \
+    translations/ByteMyCAD_sv_FI.ts
