@@ -3,10 +3,11 @@
 
 #include <QDialog>
 
-class QSplitter;
-class QTreeWidget;
+//class QSplitter;
+//class QTreeWidget;
 class QDialogButtonBox;
 class QAbstractButton;
+class BMC_SettingsSelector;
 
 class BMC_SettingsWindow : public QDialog
 {
@@ -20,14 +21,15 @@ private:
 
     void createActions();
 
-    void populateTree();
+//    void populateTree();
 
     void applyChanges();
 
     QDialogButtonBox *buttonBox;
-    QSplitter *splitView;
-    QTreeWidget *settingsTree;
-    QWidget *settingWidget;
+    BMC_SettingsSelector *settingsSelector;
+//    QSplitter *splitView;
+//    QTreeWidget *settingsTree;
+//    QWidget *settingWidget;
 
 private slots:
 
