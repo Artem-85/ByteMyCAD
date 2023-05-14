@@ -15,6 +15,8 @@ SOURCES += \
     src/gui/mainwindow/mainwindow.cpp \
     src/gui/mainwindow/mdi.cpp \
     src/gui/mainwindow/menu.cpp \
+    src/gui/settingswindow/intro/settingsitemintro.cpp \
+    src/gui/settingswindow/settingsitem.cpp \
     src/gui/settingswindow/settingsselector.cpp \
     src/gui/settingswindow/settingswindow.cpp
 
@@ -25,6 +27,8 @@ HEADERS += \
     src/gui/mainwindow/mainwindow.h \
     src/gui/mainwindow/mdi.h \
     src/gui/mainwindow/menu.h \
+    src/gui/settingswindow/intro/settingsitemintro.h \
+    src/gui/settingswindow/settingsitem.h \
     src/gui/settingswindow/settingsselector.h \
     src/gui/settingswindow/settingswindow.h \
     src/version.h
