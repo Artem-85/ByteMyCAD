@@ -12,7 +12,7 @@
 
 #define BMC_MAJOR_VERSION 0
 #define BMC_MINOR_VERSION 0
-#define BMC_REVISION 1
+#define BMC_REVISION 2
 #define BMC_BUILD "none"
 #define BMC_VERSION_TIME __TIME__
 
