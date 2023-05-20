@@ -17,6 +17,7 @@ public:
     BMC_SettingsSelector(QWidget *parent);
     void addSettingItem(BMC_SettingsItem *item);
 
+    static void addSettingViewsToStack(QStackedLayout *stack, BMC_SettingsItem *item);
 private:
     void init();
     QTreeWidget *settingsTree;

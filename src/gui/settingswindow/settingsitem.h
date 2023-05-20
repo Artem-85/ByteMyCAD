@@ -14,7 +14,7 @@ public:
     ~BMC_SettingsItem();
 
     QWidget *getView() { return view; }
-    QList<BMC_SettingsItem *> *getSubviews() { return childrenItems; }
+    QList<BMC_SettingsItem *> *getChildrenItems() { return childrenItems; }
     bool isLeafItem();
     void addSettingItem(BMC_SettingsItem *item);
 

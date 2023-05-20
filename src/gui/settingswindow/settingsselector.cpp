@@ -32,23 +32,33 @@ void BMC_SettingsSelector::init()
     BMC_SettingsItemGeneral *sGeneral = new BMC_SettingsItemGeneral(settingsTree);
     BMC_SettingsItemAppearance *sAppearance = new BMC_SettingsItemAppearance(settingsTree);
 
+    /* Add the default view directly, without adding it to the tree items list */
+    int i = viewsStack->addWidget(introView);
+    qDebug() << " Intro # in stack: " << i << Qt::endl;
+
     this->addSettingItem(sGeneral);
     this->addSettingItem(sAppearance);
-
-    /* Add the default view directly, without adding it to the tree items list */
-    viewsStack->addWidget(introView);
-//    for (BMC_SettingsItem *item: *treeItems) {
-////        qDebug() << "item: " << item->text(0);
-//        viewsStack->addWidget(item->getView());
-//        settingsTree->addTopLevelItem(item);
-//    }
 }
 
 void BMC_SettingsSelector::addSettingItem(BMC_SettingsItem *item)
 {
     /* Add top-level items to the list */
     treeItems->append(item);
-    /* Add the top- */
-    viewsStack->addWidget(item->getView());
     settingsTree->addTopLevelItem(item);
+    /* This will put the current item's view and all its children recursively into the stack of settings views */
+    addSettingViewsToStack(viewsStack, item);
+}
+
+void BMC_SettingsSelector::addSettingViewsToStack(QStackedLayout *stack, BMC_SettingsItem *item)
+{
+    /* Add current view widget to the stack: */
+    int i = stack->addWidget(item->getView());
+    qDebug() << item->text(0) << " # in stack: " << i << Qt::endl;
+
+    /* If we have any children, go to the next level of recursion */
+    if (!item->isLeafItem()) {
+        for (BMC_SettingsItem *child: *item->getChildrenItems()) {
+            addSettingViewsToStack(stack, child);
+        }
+    }
 }
