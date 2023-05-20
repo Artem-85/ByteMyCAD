@@ -48,6 +48,8 @@ private:
 
     void openSettingsWindow();
 
+    void stub() {}
+
     /****** Events ******/
     /**
      * @brief The code called on closing the main window.
@@ -70,6 +72,9 @@ private:
     /****** Actions ******/
     QAction *actionQuit;
     QAction *actionSettings;
+    QAction *actionHelpContents;
+    QAction *actionAboutBMC;
+    QAction *actionAboutQt;
     /****** /Actions ******/
 };
 #endif // MAINWINDOW_H

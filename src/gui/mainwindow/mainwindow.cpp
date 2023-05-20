@@ -13,8 +13,10 @@
 #include <QCloseEvent>
 
 BMC_MainWindow::BMC_MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent),
+    ui(new Ui::MainWindow),
+    mdiArea(new BMC_MDI(this)),
+    mainMenuBar(new BMC_MainMenuBar(this))
 {
     ui->setupUi(this);
     this->init();
@@ -22,8 +24,6 @@ BMC_MainWindow::BMC_MainWindow(QWidget *parent)
 
 BMC_MainWindow::~BMC_MainWindow()
 {
-    delete mdiArea;
-    delete mainMenuBar;
     delete ui;
 }
 
@@ -66,21 +66,36 @@ void BMC_MainWindow::createActions()
 //    connect(this, &BMC_MainWindow::, this, &QTC_MainWindow::updateMenus);
 
     /* Quit from application */
-    actionQuit = new QAction(tr("&Quit"),this);
+    actionQuit = new QAction(tr("&Quit"), this);
     actionQuit->setShortcuts(QKeySequence::Quit);
     actionQuit->setStatusTip(tr("Quit from application"));
     connect(actionQuit, &QAction::triggered, this, &BMC_MainWindow::close);
 
     /* Open application settings */
-    actionSettings = new QAction(tr("Settings"),this);
+    actionSettings = new QAction(tr("Settings"), this);
     actionSettings->setShortcuts(QKeySequence::Preferences);
     actionSettings->setStatusTip(tr("Edit application's settings"));
     connect(actionSettings, &QAction::triggered, this, &BMC_MainWindow::openSettingsWindow);
+
+    /* Open Help contents */
+    actionHelpContents = new QAction(tr("Contents"), this);
+    actionHelpContents->setShortcuts(QKeySequence::HelpContents);
+    actionHelpContents->setStatusTip(tr("Open documentation"));
+    connect(actionHelpContents, &QAction::triggered, this, &BMC_MainWindow::stub);
+
+    /* Open About application window */
+    actionAboutBMC = new QAction(tr("About ByteMyCAD"), this);
+    actionAboutBMC->setStatusTip(tr("See information about the application"));
+    connect(actionAboutBMC, &QAction::triggered, this, &BMC_MainWindow::stub);
+
+    /* Open About Qt window */
+    actionAboutQt = new QAction(tr("About Qt"), this);
+    actionAboutQt->setStatusTip(tr("See information about Qt framework"));
+    connect(actionAboutQt, &QAction::triggered, this, &BMC_MainWindow::stub);
 }
 
 void BMC_MainWindow::createMainMenu()
 {
-    mainMenuBar = new BMC_MainMenuBar(this);
     this->setMenuBar(mainMenuBar);
 
     /* File:
@@ -99,6 +114,17 @@ void BMC_MainWindow::createMainMenu()
     menuEdit->addSeparator();
     menuEdit->addAction(actionSettings);
 
+    /* Help:
+     * |-Contents
+     * |---------
+     * |-About ByteMyCAD
+     * |-About Qt
+     */
+    BMC_Menu *menuHelp = mainMenuBar->addMenu(tr("&Help"));
+    menuHelp->addAction(actionHelpContents);
+    menuHelp->addSeparator();
+    menuHelp->addAction(actionAboutBMC);
+    menuHelp->addAction(actionAboutQt);
 }
 
 void BMC_MainWindow::init()
@@ -106,7 +132,6 @@ void BMC_MainWindow::init()
     /* Setup the window parameters */
     this->setWindowTitle(BMC_DISPLAY_APP_NAME);
     /* Setup the MDI */
-    mdiArea = new BMC_MDI(this);
     this->setCentralWidget(mdiArea);
     /* Setup actions */
     createActions();
