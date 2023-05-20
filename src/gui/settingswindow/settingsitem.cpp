@@ -6,7 +6,8 @@
 BMC_SettingsItem::BMC_SettingsItem(const char *header, BMC_SettingsItem *parent)
     : QTreeWidgetItem(parent),
     childrenItems(new QList<BMC_SettingsItem *>),
-    view(new QWidget)
+    view(new QWidget),
+    id(-1)
 {
     this->setText(0, QAction::tr(header));
 }

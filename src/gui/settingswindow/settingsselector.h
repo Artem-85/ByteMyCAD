@@ -4,6 +4,7 @@
 #include <QSplitter>
 
 class QTreeWidget;
+class QTreeWidgetItem;
 class BMC_SettingsItem;
 template <>
 class QList<BMC_SettingsItem>;
@@ -16,10 +17,11 @@ class BMC_SettingsSelector : public QSplitter
 public:
     BMC_SettingsSelector(QWidget *parent);
     void addSettingItem(BMC_SettingsItem *item);
-
-    static void addSettingViewsToStack(QStackedLayout *stack, BMC_SettingsItem *item);
 private:
+    static void addSettingViewsToStack(QStackedLayout *stack, BMC_SettingsItem *item);
     void init();
+    void createActions();
+    void onTreeItemClick(QTreeWidgetItem *item);
     QTreeWidget *settingsTree;
     QWidget *currentSettingView;
     QStackedLayout *viewsStack;

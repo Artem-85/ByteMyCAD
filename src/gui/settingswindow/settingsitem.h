@@ -17,7 +17,8 @@ public:
     QList<BMC_SettingsItem *> *getChildrenItems() { return childrenItems; }
     bool isLeafItem();
     void addSettingItem(BMC_SettingsItem *item);
-
+    void setId(int n) { id = n; }
+    int getId() { return id; }
 protected:
     /**
      * @brief Children views.
@@ -33,6 +34,8 @@ protected:
      * @brief The content of the view.
      */
     QWidget *view;
+
+    int id;
 };
 
 #endif // BMC_SETTINGSITEM_H

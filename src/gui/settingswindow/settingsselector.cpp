@@ -34,10 +34,14 @@ void BMC_SettingsSelector::init()
 
     /* Add the default view directly, without adding it to the tree items list */
     int i = viewsStack->addWidget(introView);
+#if defined(DBG)
     qDebug() << " Intro # in stack: " << i << Qt::endl;
+#endif
 
     this->addSettingItem(sGeneral);
     this->addSettingItem(sAppearance);
+
+    this->createActions();
 }
 
 void BMC_SettingsSelector::addSettingItem(BMC_SettingsItem *item)
@@ -53,7 +57,10 @@ void BMC_SettingsSelector::addSettingViewsToStack(QStackedLayout *stack, BMC_Set
 {
     /* Add current view widget to the stack: */
     int i = stack->addWidget(item->getView());
+    item->setId(i);
+#if defined(DBG)
     qDebug() << item->text(0) << " # in stack: " << i << Qt::endl;
+#endif
 
     /* If we have any children, go to the next level of recursion */
     if (!item->isLeafItem()) {
@@ -61,4 +68,14 @@ void BMC_SettingsSelector::addSettingViewsToStack(QStackedLayout *stack, BMC_Set
             addSettingViewsToStack(stack, child);
         }
     }
+}
+
+void BMC_SettingsSelector::createActions()
+{
+    connect(settingsTree, &QTreeWidget::itemClicked, this, &BMC_SettingsSelector::onTreeItemClick);
+}
+
+void BMC_SettingsSelector::onTreeItemClick(QTreeWidgetItem *item)
+{
+    viewsStack->setCurrentIndex(static_cast<BMC_SettingsItem *>(item)->getId());
 }
