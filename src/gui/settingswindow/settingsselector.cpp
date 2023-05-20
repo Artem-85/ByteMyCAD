@@ -1,5 +1,7 @@
 #include "settingsselector.h"
 #include "intro/settingsitemintro.h"
+#include "general/settingsitemgeneral.h"
+#include "appearance/settingsitemappearance.h"
 #include <QTreeWidget>
 #include <QStackedLayout>
 
@@ -26,6 +28,19 @@ void BMC_SettingsSelector::init()
 
     currentSettingView->setLayout(viewsStack);
 
+    treeItems = new QList<BMC_SettingsItem *>();
+
+    BMC_SettingsItemGeneral *sGeneral = new BMC_SettingsItemGeneral(settingsTree);
+    treeItems->append(sGeneral);
+
+    BMC_SettingsItemAppearance *sAppearance = new BMC_SettingsItemAppearance(settingsTree);
+    treeItems->append(sAppearance);
+
     /* Add the default view directly, without adding it to the tree items list */
     viewsStack->addWidget(introView);
+    for (BMC_SettingsItem *item: *treeItems) {
+//        qDebug() << "item: " << item->text(0);
+        viewsStack->addWidget(item->getView());
+        settingsTree->addTopLevelItem(item);
+    }
 }

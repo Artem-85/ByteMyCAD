@@ -8,6 +8,8 @@ class BMC_SettingsItem : public QTreeWidgetItem
 public:
     BMC_SettingsItem(const char *header);
     ~BMC_SettingsItem();
+
+    QWidget *getView() { return view; }
 protected:
 //    /**
 //     * @brief Children views.

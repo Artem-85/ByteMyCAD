@@ -18,7 +18,7 @@ BMC_SettingsItem::BMC_SettingsItem(const char *header)
 BMC_SettingsItem::~BMC_SettingsItem()
 {
 //    delete views;
-    delete view;
+//    delete view;
 }
 
 //int BMC_SettingItem::getId()
