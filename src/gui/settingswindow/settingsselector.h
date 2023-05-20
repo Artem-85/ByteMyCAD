@@ -15,7 +15,7 @@ class BMC_SettingsSelector : public QSplitter
     Q_OBJECT
 public:
     BMC_SettingsSelector(QWidget *parent);
-
+    void addSettingItem(BMC_SettingsItem *item);
 
 private:
     void init();
