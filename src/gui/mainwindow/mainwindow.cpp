@@ -86,12 +86,12 @@ void BMC_MainWindow::createActions()
     /* Open About application window */
     actionAboutBMC = new QAction(tr("About ByteMyCAD"), this);
     actionAboutBMC->setStatusTip(tr("See information about the application"));
-    connect(actionAboutBMC, &QAction::triggered, this, &BMC_MainWindow::stub);
+    connect(actionAboutBMC, &QAction::triggered, this, &BMC_MainWindow::openAboutBMC);
 
     /* Open About Qt window */
     actionAboutQt = new QAction(tr("About Qt"), this);
     actionAboutQt->setStatusTip(tr("See information about Qt framework"));
-    connect(actionAboutQt, &QAction::triggered, this, &BMC_MainWindow::stub);
+    connect(actionAboutQt, &QAction::triggered, this, &BMC_MainWindow::openAboutQt);
 }
 
 void BMC_MainWindow::createMainMenu()
@@ -171,4 +171,16 @@ void BMC_MainWindow::openSettingsWindow()
     BMC_SettingsWindow *settingsWindow = new BMC_SettingsWindow(this);
     settingsWindow->init();
     settingsWindow->exec();
+}
+
+void BMC_MainWindow::openAboutQt()
+{
+    QMessageBox::aboutQt(this, tr("About Qt"));
+}
+
+void BMC_MainWindow::openAboutBMC()
+{
+    QMessageBox::about(this, tr("About ByteMyCAD"),
+                       tr("<h2>ByteMyCAD v." BMC_VERSION_FULL "</h2>"
+                          "<p>Copyright &copy; 2023 " BMC_ORGANIZATION_NAME BMC_CONTACT_EMAIL));
 }

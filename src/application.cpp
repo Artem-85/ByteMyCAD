@@ -88,7 +88,8 @@ void BMC_Application::setAppLocale()
 void BMC_Application::init()
 {
 #if defined(DBG)
-    qDebug() << "Init App\n";
+    qDebug() << "Init App";
+    qDebug() << "Version: " BMC_VERSION_FULL;
 #endif
     /* Add information about app and developers */
     this->setApplicationDisplayName(BMC_DISPLAY_APP_NAME);

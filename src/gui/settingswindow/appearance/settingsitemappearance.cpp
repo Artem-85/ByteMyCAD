@@ -3,9 +3,10 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-BMC_SettingsItemAppearance::BMC_SettingsItemAppearance(QWidget *parent)
-    : BMC_SettingsItem("Appearance")
+BMC_SettingsItemAppearance::BMC_SettingsItemAppearance(QTreeWidget *parent)
+    : BMC_SettingsItem(parent)
 {
+    this->setText(0, QAction::tr("Appearance"));
     label = new QLabel(view);
     layout = new QVBoxLayout(view);
     label->setText(QObject::tr("Appearance settings"));

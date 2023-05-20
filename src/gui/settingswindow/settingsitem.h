@@ -3,6 +3,7 @@
 
 #include <QTreeWidgetItem>
 
+class QTreeWidget;
 class BMC_SettingsItem;
 template <>
 class QList<BMC_SettingsItem>;
@@ -10,7 +11,8 @@ class QList<BMC_SettingsItem>;
 class BMC_SettingsItem : public QTreeWidgetItem
 {
 public:
-    BMC_SettingsItem(const char *header, BMC_SettingsItem *parent = nullptr);
+    explicit BMC_SettingsItem(QTreeWidget *parent);
+    explicit BMC_SettingsItem(BMC_SettingsItem *parent);
     ~BMC_SettingsItem();
 
     QWidget *getView() { return view; }

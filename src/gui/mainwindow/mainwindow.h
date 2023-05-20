@@ -46,8 +46,6 @@ private:
 
     void createMainMenu();
 
-    void openSettingsWindow();
-
     void stub() {}
 
     /****** Events ******/
@@ -76,5 +74,13 @@ private:
     QAction *actionAboutBMC;
     QAction *actionAboutQt;
     /****** /Actions ******/
+
+private slots:
+
+    void openSettingsWindow();
+
+    void openAboutQt();
+
+    void openAboutBMC();
 };
 #endif // MAINWINDOW_H

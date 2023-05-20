@@ -4,9 +4,10 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-BMC_SettingsItemGeneral::BMC_SettingsItemGeneral(QWidget *parent)
-    : BMC_SettingsItem("General")
+BMC_SettingsItemGeneral::BMC_SettingsItemGeneral(QTreeWidget *parent)
+    : BMC_SettingsItem(parent)
 {
+    this->setText(0, QAction::tr("General"));
     label = new QLabel(view);
     layout = new QVBoxLayout(view);
     label->setText(QObject::tr("General settings"));

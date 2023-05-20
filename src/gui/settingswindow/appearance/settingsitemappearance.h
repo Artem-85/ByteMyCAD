@@ -9,7 +9,7 @@ class QVBoxLayout;
 class BMC_SettingsItemAppearance : public BMC_SettingsItem
 {
 public:
-    BMC_SettingsItemAppearance(QWidget *parent);
+    explicit BMC_SettingsItemAppearance(QTreeWidget *parent);
 private:
     QLabel *label;
     QVBoxLayout *layout;
